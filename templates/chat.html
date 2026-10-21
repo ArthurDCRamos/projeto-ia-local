@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qwen Local</title>
+</head>
+
+<body>
+
+    <h1>L.I.A.</h1>
+
+    <div id="chat"></div>
+
+    <div id="entrada">
+        <input
+            type="text"
+            id="mensagem"
+            placeholder="Digite sua mensagem..."
+        >
+
+        <button onclick="enviarMensagem()">
+            Enviar
+        </button>
+    </div>
+
+    <script>
+        let enviando = false;
+
+        async function enviarMensagem() {
+
+            const campo = document.getElementById("mensagem");
+            const chat = document.getElementById("chat");
+
+            const mensagem = campo.value.trim();
+
+            if (!mensagem || enviando) {
+                return;
+            }
+
+            enviando = true;
+            campo.disabled = true
+
+            // Mostra mensagem do usuário
+  //          chat.innerHTML += `
+  //              <div class="mensagem usuario">
+  //                  <strong>Você:</strong><br>
+  //                  ${mensagem}
+  //              </div>
+  //          `;
+//
+  //          campo.value = ""; 
+
+            const msgUsuario = document.createElement("div");
+            msgUsuario.className = "mensagem usuario";
+
+            const tituloUsuario = document.createElement("strong");
+            tituloUsuario.textContent = "Você:";
+
+            msgUsuario.appendChild(tituloUsuario);
+            msgUsuario.appendChild(document.createElement("br"));
+            msgUsuario.appendChild(document.createTextNode(mensagem));
+            chat.appendChild(msgUsuario);
+
+            campo.value = "";
+
+            // Mostra carregando
+            const carregando = document.createElement("div");
+            carregando.className = "mensagem l.i.a.";
+//            carregando.innerHTML = "<strong>Qwen:</strong><br>Processando...";
+            
+            const tituloIA = document.createElement("strong");
+            tituloIA.textContent = "L.I.A.:";
+
+            const status = document.createElement("span");
+            status.textContent = "Processando...";
+
+            carregando.appendChild(tituloIA);
+            carregando.appendChild(document.createElement("br"));
+            carregando.appendChild(status);
+
+            chat.appendChild(carregando);
+
+            try {
+
+                const response = await fetch("/api/chat", {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            message: mensagem
+                        })
+                    }
+                );
+                
+                if (!response.ok){
+                    throw new Error(`Erro HTTP: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (typeof data.response !== "string"){
+                    throw new Error ("Resposta inválida do servidor.");
+                }
+                status.textContent = data.response;
+
+            } catch (erro) {
+                status.textContent =
+                    `Não foi possível obter a resposta: ${erro.message}. ` +
+                    "Verifique o servidor antes de tentar novamente.";
+                carregando.classList.add("erro");
+            } finally {
+                enviando = false;
+                campo.disabled = false;
+                campo.focus();
+            }
+        }
+
+        // Enter envia a mensagem
+        document.getElementById("mensagem")
+            .addEventListener("keydown", function(event) {
+
+                if (event.key === "Enter" && !event.shiftKey) {
+                    event.preventDefault();
+                    enviarMensagem();
+                }
+
+            });
+    </script>
+
+</body>
+</html>

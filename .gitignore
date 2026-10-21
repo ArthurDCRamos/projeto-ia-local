@@ -1,0 +1,43 @@
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+
+# Segredos e configurações locais
+.env
+.env.*
+!.env.example
+/backend/usuarios.json
+ignore/
+
+# Dados locais de usuários
+usuarios.json
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+*.bak
+
+# Editores
+.vscode/
+.idea/
+
+# Modelos de IA e arquivos grandes
+*.gguf
+models/
+
+# Banco de dados e arquivos locais
+instance/
+*.sqlite
+*.sqlite3
+*.db
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
