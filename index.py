@@ -2,6 +2,7 @@
 from datetime import timedelta
 from functools import wraps
 import os
+from dotenv import load_dotenv
 
 from flask import (
     Flask,
@@ -17,10 +18,13 @@ from backend.controllers.chat_controller import criar_chat_blueprint
 
 app = Flask(__name__)
 
+load_dotenv()
+
+app.secret_key = os.getenv("FLASK_SECRET_KEY")
+
 # TEMPORÁRIO: configurar uma chave secreta persistente
 # por variável de ambiente antes de publicar.
 
-app.secret_key = os.environ.get("FLASK_SECRET_KEY")
 
 if not app.secret_key:
     raise RuntimeError(

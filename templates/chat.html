@@ -2,14 +2,17 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="../static/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qwen Local</title>
 </head>
 
-<body>
-
-    <h1>L.I.A.</h1>
-
+<body class="dev">
+    <main>
+    <div id="cabecalho">
+        <h1>L.I.A.</h1>
+    </div>
     <div id="chat"></div>
 
     <div id="entrada">
@@ -23,7 +26,9 @@
             Enviar
         </button>
     </div>
-
+    </main>
+    <script src="{{ url_for('static', filename='js/marked.umd.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/purify.min.js') }}"></script>
     <script>
         let enviando = false;
 
@@ -66,13 +71,14 @@
 
             // Mostra carregando
             const carregando = document.createElement("div");
-            carregando.className = "mensagem l.i.a.";
+            carregando.className = "mensagem lia";
 //            carregando.innerHTML = "<strong>Qwen:</strong><br>Processando...";
             
             const tituloIA = document.createElement("strong");
             tituloIA.textContent = "L.I.A.:";
 
-            const status = document.createElement("span");
+            const status = document.createElement("div");
+            status.className = "resposta-formatada";
             status.textContent = "Processando...";
 
             carregando.appendChild(tituloIA);
@@ -105,7 +111,9 @@
                 if (typeof data.response !== "string"){
                     throw new Error ("Resposta inválida do servidor.");
                 }
-                status.textContent = data.response;
+                status.innerHTML = DOMPurify.sanitize(
+                    marked.parse(data.response)
+                );
 
             } catch (erro) {
                 status.textContent =

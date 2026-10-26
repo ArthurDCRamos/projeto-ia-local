@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 
-<body>
+<body id="grandContainerLogin">
+    <main id="containerLogin">
+        <div id="divLogin">
+            <header id="headerLogin">
+                <img src="../static/img/logoDev.ico" alt="" id="logoLogin">
+                <h1>Bem-vindo!</h1>
+                <h5>Fazer login</h5>
+            </header>
+        <form method="POST" action="/login" class="campo">
+            <input type="text" name="usuario" placeholder="Usuário" required>
+            <br><br>
 
-    <h1>Login</h1>
+            <input type="password" name="senha" placeholder="Senha" required>
+            <br><br>
 
-    <form method="POST" action="/login">
-        <input type="text" name="usuario" placeholder="Usuário" required>
-        <br><br>
+            <button type="submit">Entrar</button>
+        </form>
 
-        <input type="password" name="senha" placeholder="Senha" required>
-        <br><br>
+        <br>
 
-        <button type="submit">Entrar</button>
-    </form>
-
-    <br>
-
-    <a href="/cadastro">Criar uma conta</a>
-
+        <a href="/cadastro">Criar uma conta</a>
+        </div>
+    </main>
 </body>
 </html>
