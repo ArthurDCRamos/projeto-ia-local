@@ -9,22 +9,65 @@
 
     <h1>Cadastro</h1>
 
-    <form>
-        <input type="text" placeholder="Usuário">
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+        {% for categoria, mensagem in mensagens %}
+            <p class="mensagem {{ categoria }}">
+                {{ mensagem }}
+            </p>
+        {% endfor %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('cadastro') }}">
+
+        <input
+            type="hidden"
+            name="csrf_token"
+            value="{{ session['csrf_cadastro'] }}"
+        >
+
+        <input
+            type="text"
+            name="usuario"
+            placeholder="Usuário"
+            minlength="3"
+            maxlength="40"
+            autocomplete="username"
+            required
+        >
+
         <br><br>
 
-        <input type="password" placeholder="Senha">
+        <input
+            type="password"
+            name="senha"
+            placeholder="Senha"
+            minlength="12"
+            maxlength="1024"
+            autocomplete="new-password"
+            required
+        >
+
         <br><br>
 
-        <input type="password" placeholder="Confirmar senha">
+        <input
+            type="password"
+            name="confirmar_senha"
+            placeholder="Confirmar senha"
+            minlength="12"
+            maxlength="1024"
+            autocomplete="new-password"
+            required
+        >
+
         <br><br>
 
         <button type="submit">Cadastrar</button>
+
     </form>
 
     <br>
 
-    <a href="/login">Voltar para login</a>
+    <a href="{{ url_for('login') }}">Voltar para login</a>
 
 </body>
 </html>

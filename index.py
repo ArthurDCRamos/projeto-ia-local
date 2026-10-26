@@ -2,6 +2,8 @@
 from datetime import timedelta
 from functools import wraps
 import os
+import secrets
+import hmac
 from dotenv import load_dotenv
 
 from flask import (
@@ -11,6 +13,8 @@ from flask import (
     render_template,
     request,
     jsonify,
+    flash,
+    url_for
 )
 
 from backend.auth import GerenciadorDeAutenticacao
@@ -120,9 +124,70 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/cadastro")
+@app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
-    return render_template("cadastro.html")
+    if sessao_valida():
+        return redirect("/chat")
+    
+    if request.method == "GET":
+        session["csrf_cadastro"] = secrets.token_urlsafe(32)
+        return render_template("cadastro.html")
+
+    token_form = request.form.get("csrf_token", "")
+    token_sessao = session.get("csrf_cadastro", "")
+
+    if not token_sessao or not hmac.compare_digest(
+        token_form, token_sessao
+    ):
+
+        return "Requisição inválida. Atualize a página.", 400
+
+    session.pop("csrf_token", None)
+
+    usuario = request.form.get("usuario", "").strip()
+    senha = request.form.get("senha", "")
+    confirmar = request.form.get("confirmar_senha", "")
+    if not usuario or not senha or not confirmar:
+        flash("Preencha todos os campos.", "erro")
+        return redirect(url_for("cadastro"))
+
+    if not 3 <= len(usuario) <= 40:
+        flash("O usuário deve ter entre 3 e 40 caracteres.", "erro")
+        return redirect(url_for("cadastro"))
+
+    if len(senha) < 12:
+        flash("A senha deve ter pelo menos 12 caracteres.", "erro")
+        return redirect(url_for("cadastro"))
+
+    if len(senha) > 1024:
+        flash("A senha ultrapassa o tamanho permitido.", "erro")
+        return redirect(url_for("cadastro"))
+
+    if senha != confirmar:
+        flash("As senhas não coincidem.", "erro")
+        return redirect(url_for("cadastro"))
+
+    try:
+        sucesso = sistema.cadastrar_usuario(
+            usuario=usuario,
+            senha_plana=senha,
+            tipo="cliente"
+        )
+    except OSError:
+        app.logger.exception("Falha ao persistir novo usuário.")
+        flash("Não foi possível concluir o cadastro.", "erro")
+        return redirect(url_for("cadastro"))
+
+    if not sucesso:
+        flash(
+            "Não foi possível cadastrar. Verifique os dados "
+            "ou tente outro nome de usuário.",
+            "erro"
+        )
+        return redirect(url_for("cadastro"))
+
+    flash("Cadastro realizado! Você já pode entrar na L.I.A.", "sucesso")
+    return redirect(url_for("login"))
 
 
 @app.route("/chat")

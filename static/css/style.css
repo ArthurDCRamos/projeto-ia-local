@@ -17,9 +17,6 @@ body{
     justify-content: center;
     align-items: center;
     width: 100%;
-    main{
-        
-    }
     #cabecalho{
         width: 100vw;
         background-color: #A2FAE4;
@@ -128,8 +125,13 @@ body{
         display: flex;
         flex-direction: column;
         overflow-x: hidden;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;
         overflow-y: auto;
         max-height: calc(100vh - (10vh + 10vw));
+    }
+    #chat::-webkit-scrollbar {
+        display: none;
     }
 }  
 
@@ -218,6 +220,21 @@ body{
         cursor: pointer;
     }
 }
+
+.erro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(165, 0, 0);
+    color: #f4f9ff;
+    a{
+        
+    color: #f4f9ff;
+    text-decoration: none;
+    }
+}
+
 /*FIM LOGIN*/
 
 
