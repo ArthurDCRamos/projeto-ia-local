@@ -24,15 +24,26 @@ body{
         color: #1f1f1f;
          display: flex;
         align-items:center;
-        justify-content: left;
         font-size: clamp(2.5rem + 1rem);
+        justify-content: space-evenly;
         h1{
             padding: 3px;
-            margin-left: 20vw;
         }
         img{
             height: 55px;
             width: 70px;
+        }
+        button{
+            width: 10vw;
+            height: 35px;
+            border: none;
+            background-color: #625F3F;
+            color: #f4f9ff;
+            
+            border-radius: 10px;
+        }
+            button:hover{
+                cursor: pointer;
         }
     }
 
@@ -46,11 +57,12 @@ body{
     }
 
     #entrada{
-        margin-left: 20vw;
+        left: 50%;
+        transform: translateX(-50%);
         position: fixed;
         box-sizing: border-box;
         bottom: 0;
-        display: block;
+        display: flex;
         background-color: #1c1c1c;
         border-radius: 30px;
         padding: 2vh;
@@ -202,6 +214,7 @@ body{
         border-color: transparent;
         border-radius: 10px;
         
+        color: #f4f9ff;
         box-sizing: border-box;
     }
     input::placeholder{

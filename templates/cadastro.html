@@ -2,13 +2,16 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/style.css">
     <title>Cadastro</title>
 </head>
 
-<body>
-
-    <h1>Cadastro</h1>
-
+<body id="grandContainerLogin">
+<main id="containerLogin">
+    <div id="divLogin">
+        <header id="headerLogin">
+            <h1>Cadastro</h1>
+        </header>
     {% with mensagens = get_flashed_messages(with_categories=true) %}
         {% for categoria, mensagem in mensagens %}
             <p class="mensagem {{ categoria }}">
@@ -17,7 +20,7 @@
         {% endfor %}
     {% endwith %}
 
-    <form method="POST" action="{{ url_for('cadastro') }}">
+    <form method="POST" action="{{ url_for('cadastro') }}" class="campo">
 
         <input
             type="hidden"
@@ -68,6 +71,7 @@
     <br>
 
     <a href="{{ url_for('login') }}">Voltar para login</a>
-
+    </div>
+</main>
 </body>
 </html>

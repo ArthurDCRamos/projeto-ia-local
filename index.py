@@ -199,11 +199,12 @@ def chat():
 def erro():
     return render_template("error.html")
 
-
-@app.route("/logout")
+@app.route("/logout", methods=["POST"])
+@exigir_login()
 def logout():
     session.clear()
     return redirect("/login")
+
 
 
 if __name__ == "__main__":

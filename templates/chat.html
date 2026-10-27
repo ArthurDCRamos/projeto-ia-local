@@ -12,6 +12,11 @@
     <main>
     <div id="cabecalho">
         <h1>L.I.A.</h1>
+        
+    <form action="{{ url_for('logout') }}" method="POST">
+        <button type="submit">Sair da conta</button>
+    </form>
+
     </div>
     <div id="chat"></div>
 
