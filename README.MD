@@ -24,7 +24,7 @@ Primeira versão funcional de uma aplicação web de inteligência artificial, d
 
 - Python compatível com as dependências do projeto.
 - Modelo de linguagem local configurado e em execução.
-- Dependências listadas em `requirements.txt`.
+- Dependências listadas em `requeriments.txt`.
 
 ## Instalação
 
