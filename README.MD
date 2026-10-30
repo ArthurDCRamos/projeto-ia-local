@@ -30,7 +30,7 @@ Primeira versão funcional de uma aplicação web de inteligência artificial, d
 
 1. Clone este repositório.
 2. Crie e ative um ambiente virtual Python.
-3. Instale as dependências com `python -m pip install -r requirements.txt`.
+3. Instale as dependências com `python -m pip install -r requeriments.txt`.
 4. Configure as variáveis de ambiente necessárias.
 5. Inicie o serviço local do modelo de IA.
 6. Execute a aplicação Flask.
