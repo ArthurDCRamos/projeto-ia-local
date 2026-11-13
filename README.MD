@@ -5,29 +5,30 @@
 </p>
 
 <p align="center">
-  **Assistente de inteligência artificial com infraestrutura própria.**
+  <strong>Assistente de inteligência artificial com infraestrutura própria.</strong>
 </p>
 
 <p align="center">
-  🌐 **Acesse a aplicação:**
+  🌐 <strong>Acesse a aplicação:</strong>
   <a href="https://liassuamente.com.br" target="_blank">
     liassuamente.com.br
   </a>
 </p>
 
 <p align="center">
-  ![Python](https://img.shields.io/badge/Python-3.x-blue)
-  ![Flask](https://img.shields.io/badge/Backend-Flask-black)
-  ![Status](https://img.shields.io/badge/Status-Functional-orange)
-  ![License](https://img.shields.io/badge/License-MIT-green)
+  <img src="https://img.shields.io/badge/Python-3.x-blue" alt="Python">
+  <img src="https://img.shields.io/badge/Backend-Flask-black" alt="Flask">
+  <img src="https://img.shields.io/badge/Status-Functional-orange" alt="Status">
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
 </p>
+
+---
 
 ## Demonstração
 
 <p align="center">
   <img src="assets/readme/Gif.gif" width="100%" alt="Demonstração da L.I.A.">
 </p>
-
 ---
 
 ## Sobre o projeto
