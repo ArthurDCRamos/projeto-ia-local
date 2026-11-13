@@ -42,3 +42,6 @@ instance/
 # Sistema operacional
 .DS_Store
 Thumbs.db
+
+
+static/css/style2.css

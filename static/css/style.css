@@ -1,309 +1,272 @@
-/*PRECISA EDITAR AQ PRA FUNCIONAR CERTINHO*/
-/*@media (min-width: 768px) {
-  container { display: flex; }
-}*/
+/* RESET E ESTILOS GERAIS */
+* {
+    box-sizing: border-box;
+}
 
-body{
+body {
     font-family: Arial, Helvetica, sans-serif;
-    margin: 0px;
+    margin: 0;
+    padding: 0;
     height: 100vh;
     width: 100%;
+    background-color: #1f1f1f;
 }
 
-
-.dev{
+/* ESTRUTURA GERAL DA APLICAÇÃO DA IA (.dev) */
+.dev {
     background-color: #1f1f1f;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    #cabecalho{
-        width: 100vw;
-        background-color: #A2FAE4;
-        height: 55px;
-        color: #1f1f1f;
-         display: flex;
-        align-items:center;
-        font-size: clamp(2.5rem + 1rem);
-        justify-content: space-evenly;
-        h1{
-            padding: 3px;
-        }
-        img{
-            height: 55px;
-            width: 70px;
-        }
-        button{
-            width: 10vw;
-            height: 35px;
-            border: none;
-            background-color: #625F3F;
-            color: #f4f9ff;
-            
-            border-radius: 10px;
-        }
-            button:hover{
-                cursor: pointer;
-        }
-    }
-
-    #output{
-        height: 500px; 
-        width: 500px;
-        overflow: auto;
-        background-color: #1f1f1f;
-        display: flex; 
-        flex-direction: column-reverse
-    }
-
-    #entrada{
-        left: 50%;
-        transform: translateX(-50%);
-        position: fixed;
-        box-sizing: border-box;
-        bottom: 0;
-        display: flex;
-        background-color: #1c1c1c;
-        border-radius: 30px;
-        padding: 2vh;
-        margin-bottom: 5%;
-        input[type="text"],
-        button {
-            border: none;
-            outline: none;
-            color: #F4F9FF;
-            box-shadow: none;
-            opacity: 1;
-            background-color: transparent;
-            
-        }
-        button{
-            width: 10vw;
-        }
-        button:hover{
-        cursor: pointer;
-        }
-
-        
-    }
-
-    #mensagem,#mensagem::placeholder{
-        box-sizing: border-box;
-        width: 50vw;
-        color: #F4F9FF;
-        font-weight: 400;
-    }
-    
-    
-
-
-    .usuario{
-        margin-left: auto;
-        margin-right: 20vw;
-        border-radius: 20px;
-        background-color: #625F3F;
-        color: #F4F9FF;
-        padding: 25px 50px 25px 50px;
-        max-width: 25vw;
-        p{
-            padding: 0px;
-            margin: 0px;
-        }
-        h5{
-            padding-bottom: 3px;
-            margin: 0px
-        }
-    }
-
-    .lia{
-        float: left;
-        margin-left: 20vw;
-        border-radius: 20px;
-        background-color: #353E28;
-        color: #F4F9FF;
-        padding: 25px 50px 25px 50px;
-        max-width: 25vw;
-        p{
-            padding: 0px;
-            margin: 0px;
-        }
-        h5{
-            padding-bottom: 3px;
-            margin: 0px;
-        }
-    }
-    #chat{
-        padding-top: 2vh;
-        display: flex;
-        flex-direction: column;
-        overflow-x: hidden;
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none;
-        overflow-y: auto;
-        max-height: calc(100vh - (10vh + 10vw));
-    }
-    #chat::-webkit-scrollbar {
-        display: none;
-    }
-}  
-
-/*área de testes de front, inserir ao testar (se vc n for o Mateus ignore e apague)*/
-
-/*fim da área de testes de front*/
-
-/*LOGIN*/
-#grandContainerLogin{
-    background-color: #1f1f1f;
-}
-#containerLogin,#grandContainerLogin{
+    min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#divLogin{
-    background-color: #A2FAE4;
-    width: 25vw;
-    text-align: center;
-    padding: 20px;
-    border-radius: 5%;
-    a{
-        text-decoration: none;
-        color: #625F3F;
-    }
-    
-}
-
-#headerLogin{
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    #logoLogin{
+}
+
+/* CABEÇALHO */
+.dev #cabecalho {
+    width: 100%;
+    background-color: #A2FAE4;
+    min-height: 55px;
+    color: #1f1f1f;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+}
+
+.dev #cabecalho h1 {
+    padding: 3px;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.dev #cabecalho img {
+    height: 40px;
+    width: auto;
+}
+
+.dev #cabecalho button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #625F3F;
+    color: #f4f9ff;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.dev #cabecalho button:hover {
+    cursor: pointer;
+}
+
+/* ÁREA DO CHAT */
+.dev #chat {
+    flex: 1;
+    padding: 15px;
+    padding-bottom: 100px; /* Garante espaço para a barra de input fixa */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.dev #chat::-webkit-scrollbar {
+    display: none;
+}
+
+/* BALÕES DE MENSAGEM (Mobile Standard) */
+.dev .usuario {
+    align-self: flex-end;
+    border-radius: 20px;
+    background-color: #625F3F;
+    color: #F4F9FF;
+    padding: 15px 20px;
+    max-width: 85%;
+    word-break: break-word;
+}
+
+.dev .lia {
+    align-self: flex-start;
+    border-radius: 20px;
+    background-color: #353E28;
+    color: #F4F9FF;
+    padding: 15px 20px;
+    max-width: 85%;
+    word-break: break-word;
+}
+
+.dev .usuario p, .dev .lia p {
+    padding: 0;
+    margin: 0;
+}
+
+.dev .usuario h5, .dev .lia h5 {
+    padding-bottom: 3px;
+    margin: 0;
+}
+
+/* INPUT DE ENTRADA FIXO */
+/* INPUT DE ENTRADA (RETÂNGULO ESCURO SÓLIDO DE PONTA A PONTA) */
+.dev #entrada {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;               /* Preenche 100% da largura da tela */
+    background-color: #1c1c1c;  /* Fundo escuro totalmente opaco */
+    padding: 15px 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    z-index: 9999;              /* Fica por cima de qualquer mensagem */
+}
+
+.dev #mensagem {
+    flex: 1;
+    border: none;
+    outline: none;
+    color: #F4F9FF;
+    background-color: transparent;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.dev #mensagem::placeholder {
+    color: #F4F9FF;
+    opacity: 0.7;
+}
+
+.dev #entrada button {
+    border: none;
+    outline: none;
+    color: #F4F9FF;
+    background-color: #625F3F;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.dev #entrada button:hover {
+    cursor: pointer;
+}
+
+/* LOGIN */
+/* LOGIN RESPONSIVO */
+#grandContainerLogin {
+    background-color: #1f1f1f;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+#divLogin {
+    background-color: #A2FAE4;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    padding: 2.5rem 1.5rem; /* Espaçamento proporcional baseado na fonte */
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+#headerLogin h1 {
+    color: #1f1f1f;
+    font-size: 1.5rem; /* Aumentado proporcionalmente */
+    margin: 10px 0 5px 0;
+}
+#logoLogin{
         height: 60px;
         width: 68px;  
     }
-    h1,h5{
-        margin: 10px;
-        padding: 0px;
-        opacity: .8;
-    }
-    h1{
-        
-        color: #1f1f1f;
-        font-size: 20px;
-    }
-    h5{
-        font-size: 12px;
-        
-        color: #625F3F;
-    }
+
+#headerLogin h5 {
+    font-size: 0.9rem; /* Aumentado para legibilidade */
+    color: #625F3F;
+    margin: 0 0 20px 0;
 }
 
-.campo{
-    /*display: flex;
-    flex-wrap: wrap;*/
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     justify-content: center;
     align-items: center;
     width: 100%;
-    
-    input{
-        width: 100%;
-        height: 30px;
-        background-color: #353e28;
-        border-color: transparent;
-        border-radius: 10px;
-        
-        color: #f4f9ff;
-        box-sizing: border-box;
-    }
-    input::placeholder{
-        color: #f4f9ff;
-    }
-    button{
-        width: 10vw;
-        height: 35px;
-        border: none;
-        background-color: #625F3F;
-        color: #f4f9ff;
-        
-        border-radius: 10px;
-    }
-    button:hover{
-        cursor: pointer;
-    }
 }
 
-.erro{
+.campo input {
+    width: 100%;
+    height: 50px; /* Altura generosa para toque confortável */
+    background-color: #353e28;
+    border: none;
+    border-radius: 12px;
+    color: #f4f9ff;
+    padding: 0 16px;
+    font-size: 1rem; /* Garante tamanho legível sem zoom forçado */
+    box-sizing: border-box;
+}
+
+.campo input::placeholder {
+    color: #f4f9ff;
+    opacity: 0.8;
+}
+
+.campo button {
+    width: 100%;
+    height: 50px;
+    border: none;
+    background-color: #625F3F;
+    color: #f4f9ff;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1.05rem;
+}
+
+.campo button:hover {
+    cursor: pointer;
+}
+
+.erro {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: rgb(165, 0, 0);
     color: #f4f9ff;
-    a{
-        
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.erro a {
     color: #f4f9ff;
     text-decoration: none;
+}
+
+/* REGRAS PARA DESKTOP E TELAS GRANDES (a partir de 768px) */
+@media (min-width: 768px) {
+    .dev .usuario, .dev .lia {
+        max-width: 55%;
+    }
+
+    .dev #cabecalho h1 {
+        font-size: 1.5rem;
+    }
+
+    .campo button {
+        width: 50%;
     }
 }
-
-/*FIM LOGIN*/
-
-
-/*SUGESTÃO DE FUNÇÃO QUE INFORMA O USUÁRIO INCORRETO,
-SÓ PRECISA ADAPTAR CERTINHO NO JS
-
-function login(){
-    $('#acessar, #senha').prop('disabled',true)
-    var login = $("#login").val();
-    var senha = $("#senha").val();
-    $("#login").css('border-color', '#DDDDDD')
-    $("#senha").css('border-color', '#DDDDDD')
-    $('body').css('cursor','wait')
-        
-    if (login == ''){
-        texto = 'O campo Usuário é obrigatório'
-        document.getElementById('inf').innerHTML = texto
-        $("#login").css('border-color', 'red')
-        $('#acessar, #senha').prop('disabled',false)
-        $('body').css('cursor','auto')
-    } else if (senha == '' || senha.length < 3){
-        texto = 'O campo Senha é obrigatório'
-        document.getElementById('inf').innerHTML = texto
-        $("#senha").css('border-color', 'red')
-        $('#acessar, #senha').prop('disabled',false)
-        $('body').css('cursor','auto')
-    } else {
-        //daqui pra baixo eh tudo opc, mas o bagulho de verificar senha e user ta lá
-        /*$.ajax({
-            url: '',
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                'login': login,
-                'senha': senha
-            },success: function(acesso){
-                $('body').css('cursor','auto')
-                $('#acessar, #senha').prop('disabled',false)
-                if (acesso.ok == 'negado') {
-                    texto = '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> Usuário ou senha incorretos!'
-                    document.getElementById('inf').innerHTML = texto
-                } else if (acesso.ok == 'ok') {
-                    sessionStorage.setItem("login",acesso.login);                  
-                    window.location.href = 'index.html';
-                }
-            },error: function(jqXHR, status,error){
-                $('body').css('cursor','auto')
-                $('#acessar, #senha').prop('disabled',false)
-                texto = "Não foi possível fazer login!<br>Por favor, tente novamente<br>mais tarde"
-                mensagem(texto);
-                console.log(jqXHR,status,error);
-            }
-        })*//*
-       alert("ok")//apagar isso
-        $('#acessar, #senha').prop('disabled',false)
-        $('body').css('cursor','auto')
-    } 
+@media screen and (max-width: 767px) {
+    #grandcontainerlogin #containerlogin {
+        transform: scale(1.2);
+        transform-origin: center;
+    }
 }
-*/
