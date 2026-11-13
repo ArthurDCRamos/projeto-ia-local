@@ -95,7 +95,7 @@ A aplicação utiliza uma estrutura de comunicação entre o usuário, a camada 
 1. Clone este repositório:
 
    ```bash
-   git clone URL_DO_REPOSITORIO
+   git clone https://github.com/ArthurDCRamos/projeto-ia-local.git
    ```
 
 2. Acesse o diretório:
