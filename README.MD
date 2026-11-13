@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>Assistente de inteligência artificial com infraestrutura própria.</strong>
+  <strong>Projeto acadêmico de desenvolvimento de uma aplicação web de inteligência artificial.</strong>
 </p>
 
 <p align="center">
@@ -13,6 +13,10 @@
   <a href="https://liassuamente.com.br" target="_blank">
     liassuamente.com.br
   </a>
+</p>
+
+<p align="center">
+  Desenvolvido no contexto universitário e disponibilizado no repositório institucional da faculdade.
 </p>
 
 <p align="center">
